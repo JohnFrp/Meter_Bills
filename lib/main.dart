@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +15,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BillCalculatorScreen(),
+      home: const BillCalculatorScreen(),
     );
   }
 }
 
 class BillCalculatorScreen extends StatefulWidget {
-  const BillCalculatorScreen({Key? key}) : super(key: key);
+  const BillCalculatorScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _BillCalculatorScreenState createState() => _BillCalculatorScreenState();
 }
 
@@ -53,34 +54,34 @@ class _BillCalculatorScreenState extends State<BillCalculatorScreen> {
 
 
   double _calculateTotalBill(int unit) {
-    const double RATE_1_TO_30 = 35;
-    const double RATE_31_TO_50 = 50;
-    const double RATE_51_TO_75 = 70;
-    const double RATE_76_TO_100 = 90;
-    const double RATE_101_TO_150 = 110;
-    const double RATE_151_TO_200 = 120;
-    const double RATE_ABOVE_200 = 125;
-    const double MAINTENANCE_FEE = 500;
+    const double rate1To30 = 35;
+    const double rate31To50 = 50;
+    const double rate51To75 = 70;
+    const double rate76To100 = 90;
+    const double rate101To150 = 110;
+    const double rate151To200 = 120;
+    const double rateAbove200 = 125;
+    const double maintenanceFee = 500;
 
     double totalBill = 0;
 
     if (unit <= 30) {
-      totalBill = unit * RATE_1_TO_30;
+      totalBill = unit * rate1To30;
     } else if (unit <= 50) {
-      totalBill = (30 * RATE_1_TO_30) + ((unit - 30) * RATE_31_TO_50);
+      totalBill = (30 * rate1To30) + ((unit - 30) * rate31To50);
     } else if (unit <= 75) {
-      totalBill = (30 * RATE_1_TO_30) + (20 * RATE_31_TO_50) + ((unit - 50) * RATE_51_TO_75);
+      totalBill = (30 * rate1To30) + (20 * rate31To50) + ((unit - 50) * rate51To75);
     } else if (unit <= 100) {
-      totalBill = (30 * RATE_1_TO_30) + (20 * RATE_31_TO_50) + (25 * RATE_51_TO_75) + ((unit - 75) * RATE_76_TO_100);
+      totalBill = (30 * rate1To30) + (20 * rate31To50) + (25 * rate51To75) + ((unit - 75) * rate76To100);
     } else if (unit <= 150) {
-      totalBill = (30 * RATE_1_TO_30) + (20 * RATE_31_TO_50) + (25 * RATE_51_TO_75) + (25 * RATE_76_TO_100) + ((unit - 100) * RATE_101_TO_150);
+      totalBill = (30 * rate1To30) + (20 * rate31To50) + (25 * rate51To75) + (25 * rate76To100) + ((unit - 100) * rate101To150);
     } else if (unit <= 200) {
-      totalBill = (30 * RATE_1_TO_30) + (20 * RATE_31_TO_50) + (25 * RATE_51_TO_75) + (25 * RATE_76_TO_100) + (50 * RATE_101_TO_150) + ((unit - 150) * RATE_151_TO_200);
+      totalBill = (30 * rate1To30) + (20 * rate31To50) + (25 * rate51To75) + (25 * rate76To100) + (50 * rate101To150) + ((unit - 150) * rate151To200);
     } else {
-      totalBill = (30 * RATE_1_TO_30) + (20 * RATE_31_TO_50) + (25 * RATE_51_TO_75) + (25 * RATE_76_TO_100) + (50 * RATE_101_TO_150) + (50 * RATE_151_TO_200) + ((unit - 200) * RATE_ABOVE_200);
+      totalBill = (30 * rate1To30) + (20 * rate31To50) + (25 * rate51To75) + (25 * rate76To100) + (50 * rate101To150) + (50 * rate151To200) + ((unit - 200) * rateAbove200);
     }
 
-    totalBill += MAINTENANCE_FEE;
+    totalBill += maintenanceFee;
     return totalBill;
   }
 
@@ -88,40 +89,40 @@ class _BillCalculatorScreenState extends State<BillCalculatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meter Bill Calculator'),
+        title: const Text('Meter Bill Calculator'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
+            const Text(
               'Enter Units Consumed:',
               style: TextStyle(fontSize: 18),
             ),
             TextField(
               controller: _unitsController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter units',
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _calculateBill,
-              child: Text('Calculate',
+              child: const Text('Calculate',
               style: TextStyle(
-                  color: const Color.fromARGB(255, 0, 13, 255),
+                  color: Color.fromARGB(255, 0, 13, 255),
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 255, 0, 0),
                 borderRadius: BorderRadius.circular(15),
@@ -129,7 +130,7 @@ class _BillCalculatorScreenState extends State<BillCalculatorScreen> {
               ),
               child: Text(
                 _result.isEmpty ? 'Enter The Number Of Units' : _result,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
