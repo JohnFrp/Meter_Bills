@@ -129,7 +129,7 @@ class _BillCalculatorScreenState extends State<BillCalculatorScreen> {
                 border: Border.all(color: Colors.grey),
               ),
               child: Text(
-                _result.isEmpty ? 'Enter The Number Of Units =>' : _result,
+                _result.isEmpty ? 'Enter The Number Of Units' : _result,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 25,
